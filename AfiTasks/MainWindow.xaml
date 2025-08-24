@@ -1,0 +1,33 @@
+﻿<Window x:Class="AfiTasks.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AfiTasks"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" Background="Transparent"
+        ShowInTaskbar="False" WindowStyle="None" Topmost="True"
+        Activated="Window_Activated" Deactivated="Window_Deactivated" MouseDown="Window_MouseDown" MouseUp="Window_MouseUp" KeyUp="Window_KeyUp"
+        Title="MainWindow" SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <local:OutlinedTextBlock x:Name="WindowNumber" Text="" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="30" FontWeight="ExtraBold" StrokeThickness="3" Stroke="White" Fill="Black"/>
+        <local:OutlinedTextBlock x:Name="WindowCounter" Text="0/10" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="30" FontWeight="ExtraBold" StrokeThickness="3" Stroke="White" Fill="Black"/>
+        <Border Grid.Row="1" Padding="6" x:Name="WindowBorder" Background="#5FFF" CornerRadius="20">
+            <local:OutlinedTextBlock x:Name="WindowText" Text="مهام خدمة العملاء" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="40" FontWeight="ExtraBold" StrokeThickness="3" Stroke="Black">
+                <local:OutlinedTextBlock.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop x:Name="TextColorOne" Color="Red" Offset="0"/>
+                        <GradientStop x:Name="TextColorTwo" Color="Orange" Offset="0.5"/>
+                        <GradientStop x:Name="TextColorThree" Color="Yellow" Offset="1"/>
+                    </LinearGradientBrush>
+                </local:OutlinedTextBlock.Fill>
+            </local:OutlinedTextBlock>
+        </Border>
+    </Grid>
+
+</Window>
