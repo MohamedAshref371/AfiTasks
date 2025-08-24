@@ -43,13 +43,6 @@ namespace AfiTasks
 
             if (current.Count > 0) tasks.Add(current.ToArray());
 
-            //var tasksMenu = new System.Windows.Forms.ToolStripMenuItem("قائمة المهام");
-            //for (int i = 0; i < tasks.Count; i++)
-            //{
-            //    int idx = i;
-            //    tasksMenu.DropDownItems.Add(tasks[i][0], null, (s, ev) => RunTask(idx));
-            //}
-
             var menu = new System.Windows.Forms.ContextMenuStrip();
             for (int i = 0; i < tasks.Count; i++)
             {
@@ -58,12 +51,6 @@ namespace AfiTasks
             }
             menu.Items.Add("خروج", null, (s, ev) => ExitApp());
             trayIcon.ContextMenuStrip = menu;
-
-            // دبل كليك على الأيقونة
-            //trayIcon.DoubleClick += (s, ev) => ShowMainWindow();
-
-            // افتح النافذة الأساسية أول مرة
-            //ShowMainWindow();
         }
 
         private void RunTask(int i)
@@ -71,23 +58,6 @@ namespace AfiTasks
             MainWindow mw = new MainWindow(tasks[i], i % 2);
             mw.Show();
         }
-
-        //private void ShowMainWindow()
-        //{
-        //    if (Current.MainWindow == null)
-        //    {
-        //        Current.MainWindow = new MainWindow();
-        //        Current.MainWindow.Closed += (s, e) => Current.MainWindow = null;
-        //    }
-
-        //    if (!Current.MainWindow.IsVisible)
-        //        Current.MainWindow.Show();
-
-        //    if (Current.MainWindow.WindowState == WindowState.Minimized)
-        //        Current.MainWindow.WindowState = WindowState.Normal;
-
-        //    Current.MainWindow.Activate();
-        //}
 
         private void ExitApp()
         {
