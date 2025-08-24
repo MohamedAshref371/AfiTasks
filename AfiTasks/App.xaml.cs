@@ -26,6 +26,12 @@ namespace AfiTasks
                 Text = "AfiTasks"
             };
 
+            if (!System.IO.File.Exists("Tasks.txt"))
+            {
+                MessageBox.Show("ملف Tasks.txt غير موجود", "خطأ", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.RtlReading);
+                ExitApp();
+            }
+
             string[] arr = System.IO.File.ReadAllLines("Tasks.txt").Select(s => s.Trim()).Where(s => s != "").ToArray();
             tasks = new List<string[]>();
             List<string> current = new List<string>();
