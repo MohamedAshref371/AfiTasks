@@ -15,6 +15,7 @@ namespace AfiTasks
         public MainWindow(string[] elements, int colorState)
         {
             InitializeComponent();
+            FontSizeValue = Properties.Settings.Default.FontSize;
             this.elements = elements;
             WindowCounter.Text = $"{idx}/{elements.Length - 1}";
             WindowText.Text = elements[idx];
@@ -58,7 +59,7 @@ namespace AfiTasks
 
         private void Window_Deactivated(object sender, EventArgs e)
         {
-            WindowTextFontSize(FontSizeValue - 8);
+            WindowTextFontSize(Math.Round(FontSizeValue * 0.81));
 
             TextColorOne.Color = Color.FromRgb(100, 100, 100);
             TextColorTwo.Color = Color.FromRgb(150, 150, 150);
@@ -112,11 +113,15 @@ namespace AfiTasks
             else if (e.Key == Key.Add && FontSizeValue < 72)
             {
                 FontSizeValue += 2;
+                Properties.Settings.Default.FontSize = FontSizeValue;
+                Properties.Settings.Default.Save();
                 WindowTextFontSize(FontSizeValue);
             }
             else if (e.Key == Key.Subtract && FontSizeValue > 30)
             {
                 FontSizeValue -= 2;
+                Properties.Settings.Default.FontSize = FontSizeValue;
+                Properties.Settings.Default.Save();
                 WindowTextFontSize(FontSizeValue);
             }
             else if (e.Key == Key.Escape)
