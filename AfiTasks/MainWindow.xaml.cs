@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AfiTasks
 {
@@ -26,6 +16,11 @@ namespace AfiTasks
             WindowCounter.Text = $"{idx}/{elements.Length - 1}";
             WindowText.Text = elements[idx];
             this.colorState = colorState;
+            if (colorState == 1)
+            {
+                WindowBorder.Background = (Brush)new BrushConverter().ConvertFromString("#5000");
+                WindowText.Stroke = Brushes.White;
+            }
         }
 
         private void Window_Activated(object sender, EventArgs e)
@@ -42,9 +37,8 @@ namespace AfiTasks
             if (colorState == 1)
             {
                 TextColorOne.Color = Color.FromRgb(0, 0, 255);
-                TextColorTwo.Color = Color.FromRgb(0, 165, 255);
-                TextColorThree.Color = Color.FromRgb(0, 255, 255);
-                return;
+                TextColorTwo.Color = Color.FromRgb(0, 90, 255);
+                TextColorThree.Color = Color.FromRgb(0, 165, 255);
             }
             else
             {
@@ -82,9 +76,21 @@ namespace AfiTasks
                 idx += 1;
             else if (e.ChangedButton == MouseButton.Middle && idx > 0)
                 idx -= 1;
-            
+            else
+                return;
+
             WindowText.Text = elements[idx];
             WindowCounter.Text = $"{idx}/{elements.Length - 1}";
+            if (idx % 2 == 1)
+            {
+                WindowCounter.Fill = Brushes.White;
+                WindowCounter.Stroke = Brushes.Black;
+            }
+            else
+            {
+                WindowCounter.Fill = Brushes.Black;
+                WindowCounter.Stroke = Brushes.White;
+            }
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
