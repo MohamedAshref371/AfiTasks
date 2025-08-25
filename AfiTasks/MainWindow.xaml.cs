@@ -49,6 +49,12 @@ namespace AfiTasks
                 TextColorTwo.Color = Color.FromRgb(0, 90, 255);
                 TextColorThree.Color = Color.FromRgb(0, 165, 255);
             }
+            else if (colorState == 2)
+            {
+                TextColorOne.Color = Color.FromRgb(112, 153, 9);
+                TextColorTwo.Color = Color.FromRgb(200, 227, 27);
+                TextColorThree.Color = Color.FromRgb(243, 250, 202);
+            }
             else
             {
                 TextColorOne.Color = Color.FromRgb(255, 0, 0);
