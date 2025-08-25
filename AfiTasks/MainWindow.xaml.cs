@@ -79,8 +79,16 @@ namespace AfiTasks
             else
                 return;
 
+            double oldWidth = this.Width, oldHeight = this.Height;
             WindowText.Text = elements[idx];
             WindowCounter.Text = $"{idx}/{elements.Length - 1}";
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                this.Left += (oldWidth - this.Width) / 2;
+                this.Top += (oldHeight - this.Height) / 2;
+            }), System.Windows.Threading.DispatcherPriority.Render);
+
             if (idx % 2 == 1)
             {
                 WindowCounter.Fill = Brushes.White;
