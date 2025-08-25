@@ -7,8 +7,11 @@ namespace AfiTasks
 {
     public partial class MainWindow : Window
     {
+        public static double FontSizeValue = 42;
+
         int idx; string[] elements;
         int colorState;
+
         public MainWindow(string[] elements, int colorState)
         {
             InitializeComponent();
@@ -23,16 +26,21 @@ namespace AfiTasks
             }
         }
 
-        private void Window_Activated(object sender, EventArgs e)
+        private void WindowTextFontSize(double fontSize)
         {
             double oldWidth = this.Width, oldHeight = this.Height;
-            WindowText.FontSize = 42;
+            WindowText.FontSize = fontSize;
 
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 this.Left += (oldWidth - this.Width) / 2;
                 this.Top += (oldHeight - this.Height) / 2;
             }), System.Windows.Threading.DispatcherPriority.Render);
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            WindowTextFontSize(FontSizeValue);
 
             if (colorState == 1)
             {
@@ -50,14 +58,7 @@ namespace AfiTasks
 
         private void Window_Deactivated(object sender, EventArgs e)
         {
-            double oldWidth = this.Width, oldHeight = this.Height;
-            WindowText.FontSize = 35;
-
-            Dispatcher.BeginInvoke(new Action(() =>
-            {
-                this.Left += (oldWidth - this.Width) / 2;
-                this.Top += (oldHeight - this.Height) / 2;
-            }), System.Windows.Threading.DispatcherPriority.Render);
+            WindowTextFontSize(FontSizeValue - 8);
 
             TextColorOne.Color = Color.FromRgb(100, 100, 100);
             TextColorTwo.Color = Color.FromRgb(150, 150, 150);
@@ -107,6 +108,16 @@ namespace AfiTasks
             {
                 int number = e.Key - Key.NumPad0;
                 WindowNumber.Text += number.ToString();
+            }
+            else if (e.Key == Key.Add && FontSizeValue < 72)
+            {
+                FontSizeValue += 2;
+                WindowTextFontSize(FontSizeValue);
+            }
+            else if (e.Key == Key.Subtract && FontSizeValue > 30)
+            {
+                FontSizeValue -= 2;
+                WindowTextFontSize(FontSizeValue);
             }
             else if (e.Key == Key.Escape)
                 this.Hide();
